@@ -1,0 +1,4 @@
+Arreglo ordenado: [1, 5, 8, 12, 20, 25, 30, 44, 50]
+Buscando: 50
+Resultado:
+El número está en la posición: 8

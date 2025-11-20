@@ -21,28 +21,43 @@ public class BusquedaBinariaFile {
     }
 
     public static void main(String[] args) throws Exception {
+
+        // Leer archivo entrada.txt
         BufferedReader br = new BufferedReader(new FileReader("entrada.txt"));
         List<Integer> list = new ArrayList<>();
 
         String linea;
         while ((linea = br.readLine()) != null) {
-            list.add(Integer.parseInt(linea));
+            list.add(Integer.parseInt(linea.trim()));
         }
         br.close();
 
+        // Convertir a arreglo
         int[] arr = list.stream().mapToInt(i -> i).toArray();
 
+        // Ordenar arreglo
         Arrays.sort(arr);
 
-        int buscar = 50; // <-- cambia este número
+        // Número a buscar
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingresa el número a buscar: ");
+        int buscar = sc.nextInt();
 
+        // Ejecutar búsqueda
         int pos = busquedaBinaria(arr, buscar);
 
+        // Guardar salida
         PrintWriter pw = new PrintWriter("salida_busqueda.txt");
-        pw.println("Posición: " + pos);
+        pw.println("Arreglo ordenado: " + Arrays.toString(arr));
+        pw.println("Buscando: " + buscar);
+        pw.println("Resultado:");
+        if (pos >= 0)
+            pw.println("El número está en la posición: " + pos);
+        else
+            pw.println("Número NO encontrado.");
+
         pw.close();
 
-        System.out.println("Búsqueda completada.");
+        System.out.println("Búsqueda completada. Revisa 'salida_busqueda.txt'");
     }
 }
-
